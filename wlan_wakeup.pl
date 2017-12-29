@@ -6,7 +6,7 @@ use warnings;
 use Net::Ping;
 # The IP address of your router. Can be different, like 10.0.0.1
 my $host = "192.168.1.1";
-# Instanciate
+# Instantiate
 my $p = Net::Ping->new();
 if ($p->ping($host))
 {       # Everything's hunky dory.
@@ -20,9 +20,10 @@ if ($p->ping($host))
 	`ifdown $wlan`;
 	sleep(5);
 	`ifup --force $wlan`;
+	sleep(5);
 	if (not ($p->ping($host)) )
 	{	# Emergency powers...
-		`sudo shutdown -h now`;
+		`sudo reboot -h now`;
 	}
 	$p->close();
 	print "Network's UP now\n";
